@@ -18,8 +18,11 @@ public class DeckTester {
 		System.out.println(d1.getSize());
 		System.out.println(d1.isEmpty());
 		
-		d1.deal();
-		d1.deal();
+		for(int i = 0; i < 11; ++i){
+			d1.deal();
+		}
+		
+		
 		
 		System.out.println(d1);
 	}

@@ -1,4 +1,5 @@
 package Cards;
+import java.util.Random;
 
 /**
  * This class 
@@ -10,7 +11,7 @@ public class Shuffler {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 8;
 
 
 	/**
@@ -18,9 +19,12 @@ public class Shuffler {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
+		
+		
+		
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
-		int[] values1 = {0, 1, 2, 3};
+		int[] values1 = {0, 1, 2, 3, 4, 5, 6};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			perfectShuffle(values1);
 			System.out.print("  " + j + ":");
@@ -33,7 +37,7 @@ public class Shuffler {
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
+		int[] values2 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -65,11 +69,10 @@ public class Shuffler {
 			k += 2;
 		}
 		
-		for(int i = 0; i < shuffled.length; ++i){
-			System.out.println(shuffled[i]);
+		for(int i = 0; i < values.length; ++i){
+			values[i] = shuffled[i];
 		}
 		
-		values = shuffled;
 	
 	}
 
@@ -85,6 +88,15 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
+		Random randGen = new Random();
+		int temp;
+		
+		for(int k = values.length - 1; k >= 0; --k){
+			int pos = randGen.nextInt(k + 1);  
+			temp = values[pos];
+			values[pos] = values[k];
+			values[k] = temp;
+		}
 		
 	}
 }
