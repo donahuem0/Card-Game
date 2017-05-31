@@ -2,6 +2,7 @@ package Cards;
 
 
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 
@@ -72,8 +73,20 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		Random randGen = new Random();
+		Card temp;
+		
+		for(int k = cards.size() - 1; k >= 0; --k){
+			int pos = randGen.nextInt(k + 1);  
+			temp = cards.get(pos);
+			cards.set(pos, cards.get(k));
+			cards.set(k, temp);
+		}
+		
+		
+		size = cards.size(); 
 	}
+		
 
 	/**
 	 * Deals a card from this deck.
@@ -81,9 +94,14 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		size--;
-		Card x = cards.get(size);
-		return x;
+		if(size <= 0){
+			return null;
+		}
+		else{
+			size--;
+			Card x = cards.get(size);
+			return x;
+		}	
 	}
 
 	/**
